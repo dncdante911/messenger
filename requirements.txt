@@ -1,0 +1,21 @@
+# Core Framework
+fastapi
+uvicorn[standard]
+pydantic==2.5.3
+pydantic-settings
+
+# Database (PostgreSQL)
+sqlalchemy
+asyncpg
+alembic
+psycopg2-binary
+
+# Validation Fix
+email-validator
+
+# Multipart/Form Support <--- НОВОЕ ДОБАВЛЕНИЕ
+python-multipart 
+
+# Utilities (если используется)
+python-jose[cryptography]
+passlib[bcrypt]
