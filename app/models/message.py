@@ -12,7 +12,7 @@ class Message(Base):
     sender = relationship("User", foreign_keys=[sender_id], back_populates="sent_messages")
     recipient = relationship("User", foreign_keys=[recipient_id], back_populates="received_messages")
 
-    # Content - для E2EE здесь хранится зашифрованный текст
+    # Content - РґР»СЏ E2EE Р·РґРµСЃСЊ С…СЂР°РЅРёС‚СЃСЏ Р·Р°С€РёС„СЂРѕРІР°РЅРЅС‹Р№ С‚РµРєСЃС‚
     content = Column(Text, nullable=False)
     
     is_deleted = Column(Boolean, default=False) 

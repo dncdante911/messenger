@@ -11,12 +11,11 @@ services:
       - db
       - redis
     restart: always
-    # Указываем, что DB_HOST — это имя сервиса db в Docker-сети
     environment:
       DB_HOST: db 
 
   db:
-    image: postgres:16-alpine
+    image: postgres:15-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:

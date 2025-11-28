@@ -2,20 +2,20 @@ from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Any
 
-# Схема для команды, которую клиент отправляет по WebSocket
+# РЎС…РµРјР° РґР»СЏ РєРѕРјР°РЅРґС‹, РєРѕС‚РѕСЂСѓСЋ РєР»РёРµРЅС‚ РѕС‚РїСЂР°РІР»СЏРµС‚ РїРѕ WebSocket
 class WSCommand(BaseModel):
-    type: str = Field(..., description="Тип команды: SEND_MSG, TYPING, READ")
-    payload: Any = Field(..., description="Полезная нагрузка команды")
+    type: str = Field(..., description="РўРёРї РєРѕРјР°РЅРґС‹: SEND_MSG, TYPING, READ")
+    payload: Any = Field(..., description="РџРѕР»РµР·РЅР°СЏ РЅР°РіСЂСѓР·РєР° РєРѕРјР°РЅРґС‹")
 
-# Схема для полезной нагрузки команды SEND_MSG
+# РЎС…РµРјР° РґР»СЏ РїРѕР»РµР·РЅРѕР№ РЅР°РіСЂСѓР·РєРё РєРѕРјР°РЅРґС‹ SEND_MSG
 class WSMessagePayload(BaseModel):
     recipient_id: int
-    content: str # Зашифрованный контент
+    content: str # Р—Р°С€РёС„СЂРѕРІР°РЅРЅС‹Р№ РєРѕРЅС‚РµРЅС‚
 
-# Схема для исходящего сообщения (сервер -> клиент)
+# РЎС…РµРјР° РґР»СЏ РёСЃС…РѕРґСЏС‰РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ (СЃРµСЂРІРµСЂ -> РєР»РёРµРЅС‚)
 class MessageOut(BaseModel):
     id: int
     sender_id: int
     recipient_id: int
     content: str
-    timestamp: datetime
+    created_at: datetime

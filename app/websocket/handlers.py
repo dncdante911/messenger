@@ -7,6 +7,7 @@ from app.schemas.message_schema import WSCommand, WSMessagePayload
 from app.crud import message_crud 
 from app.core.database import AsyncSessionLocal
 from app.schemas.message_schema import MessageOut
+from app.crud import message_crud, user_crud
 
 ws_router = APIRouter()
 
@@ -16,7 +17,7 @@ async def websocket_endpoint(
     current_user: User = Depends(get_current_user_from_websocket) 
 ):
     if current_user is None:
-        return # Соединение уже закрыто в зависимости
+        return # РЎРѕРµРґРёРЅРµРЅРёРµ СѓР¶Рµ Р·Р°РєСЂС‹С‚Рѕ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё
 
     user_id = current_user.id
     
@@ -40,7 +41,7 @@ async def websocket_endpoint(
                 await handle_send_message(user_id, WSMessagePayload(**command.payload))
                 
             elif command.type == "TYPING":
-                # В идеале: проверить, что получатель активен и отправить ему
+                # Р’ РёРґРµР°Р»Рµ: РїСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ РїРѕР»СѓС‡Р°С‚РµР»СЊ Р°РєС‚РёРІРµРЅ Рё РѕС‚РїСЂР°РІРёС‚СЊ РµРјСѓ
                 recipient_id = command.payload.get("recipient_id") 
                 if recipient_id:
                      await manager.send_personal_message(recipient_id, data)

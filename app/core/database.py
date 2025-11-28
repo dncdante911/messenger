@@ -22,6 +22,6 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
 
 async def init_db():
     async with engine.begin() as conn:
-        # Для корректного создания таблиц требуется импортировать все модели
+        # Р”Р»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ СЃРѕР·РґР°РЅРёСЏ С‚Р°Р±Р»РёС† С‚СЂРµР±СѓРµС‚СЃСЏ РёРјРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РІСЃРµ РјРѕРґРµР»Рё
         from app.models import user, message, key_bundle 
         await conn.run_sync(Base.metadata.create_all)

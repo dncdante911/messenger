@@ -11,7 +11,7 @@ from app.websocket.handlers import ws_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("--- 🚀 Инициализация: Запуск БД... ---")
-    await init_db() 
+    # await init_db() 
     print("--- ✅ Инициализация завершена. ---")
     yield
     print("--- 🛑 Приложение завершает работу. ---")
